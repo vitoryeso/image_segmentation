@@ -10,22 +10,6 @@ def unet(input_shape, n_classes):
   inputs = Input(shape = input_shape)
   x = inputs
 
-  conv_blocks2 =    [[Conv2D(64, 3, padding='same', activation='relu'), 
-                      Conv2D(64, 3, padding='same',activation='relu')],  
-                   
-                    [Conv2D(128, 3,  padding='same', activation='relu'),
-                      Conv2D(128, 3,  padding='same', activation='relu')],
-                   
-                    [Conv2D(256, 3,  padding='same', activation='relu'),
-                      Conv2D(256, 3,  padding='same', activation='relu')],
-                     
-                    [Conv2D(512, 3,  padding='same', activation='relu'),
-                      Conv2D(512, 3,  padding='same', activation='relu')],
-                     
-                    [Conv2D(1024, 3, padding='same', activation='relu'),
-                      Conv2D(1024, 3, padding='same', activation='relu')]]
-
-
   " downsampling: "
   conv_blocks =    [[Conv2D(64, 3,  padding='same', activation='relu'), 
                       Conv2D(64, 3,  padding='same', activation='relu')],  
@@ -47,7 +31,21 @@ def unet(input_shape, n_classes):
                     Conv2DTranspose(256, 3, strides=2, padding='same', activation='relu'),
                     Conv2DTranspose(128, 3, strides=2, padding='same', activation='relu'),
                     Conv2DTranspose(64, 3, strides=2, padding='same', activation='relu')]
-
+  
+  conv_blocks2 =  [[Conv2D(64, 3, padding='same', activation='relu'), 
+                    Conv2D(64, 3, padding='same',activation='relu')],  
+                   
+                   [Conv2D(128, 3,  padding='same', activation='relu'),
+                    Conv2D(128, 3,  padding='same', activation='relu')],
+                   
+                   [Conv2D(256, 3,  padding='same', activation='relu'),
+                    Conv2D(256, 3,  padding='same', activation='relu')],
+                     
+                   [Conv2D(512, 3,  padding='same', activation='relu'),
+                    Conv2D(512, 3,  padding='same', activation='relu')],
+                     
+                   [Conv2D(1024, 3, padding='same', activation='relu'),
+                    Conv2D(1024, 3, padding='same', activation='relu')]]
 
   copy = []
   for block in conv_blocks:
